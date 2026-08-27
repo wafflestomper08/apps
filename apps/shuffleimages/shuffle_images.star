@@ -35,10 +35,18 @@ def main(config):
         ))
     elif config.bool("shuffle", True) and img_cnt > 1:  #should only be greater than 1 once non-shuffling is implemented
         idx = random.number(0, img_cnt - 1)  #-1 becuase indices start at zero
-        img = render.Image(base64.decode(img_vec[idx]))
+        img = render.Image(
+    base64.decode(img_vec[idx]),
+    width = 64,
+    height = 32,
+)
     else:
         idx = (int(time.now().unix) // 60) % img_cnt  #new iamge every 60 seconds
-        img = render.Image(base64.decode(img_vec[idx]))
+        img = render.Image(
+    base64.decode(img_vec[idx]),
+    width = 64,
+    height = 32,
+)
         #print("Displaying Image %d!!!!" % (idx+1))
 
     #get image delay
